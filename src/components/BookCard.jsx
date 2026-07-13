@@ -4,8 +4,6 @@ import { Heart, BookOpen } from "lucide-react";
 import { coverUrl, workId } from "../api/openLibrary";
 import { useFavoriteAction } from "../hooks/useFavoriteAction";
 import { useLanguage } from "../context/LanguageContext";
-import StatusSelect from "./StatusSelect";
-
 
 export default function BookCard({ book }) {
   const { isFavorite, handleToggleFavorite } = useFavoriteAction();
@@ -63,10 +61,6 @@ export default function BookCard({ book }) {
       >
         <Heart className={`w-4 h-4 ${fav ? "fill-amber-400 text-amber-400" : "text-white"}`} />
       </button>
-
-      <div className="px-3 pb-3">
-        <StatusSelect book={book} className="w-full" />
-      </div>
     </div>
   );
 }

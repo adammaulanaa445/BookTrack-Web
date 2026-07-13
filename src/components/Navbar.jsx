@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, Moon, Sun, LibraryBig, Heart, BookMarked, Languages, Clock, X } from "lucide-react";
+import { Search, Moon, Sun, LibraryBig, Heart, Languages, Clock, X } from "lucide-react";
 import { useFavorites } from "../context/FavoritesContext";
 import { useLanguage } from "../context/LanguageContext";
 import { useSearchHistory } from "../hooks/useSearchHistory";
@@ -34,7 +34,6 @@ export default function Navbar({ dark, setDark }) {
   };
 
   const handleBlur = () => {
-    // delay supaya klik di dropdown sempat kedeteksi sebelum dropdown ditutup
     blurTimeoutRef.current = setTimeout(() => setShowHistory(false), 150);
   };
 
@@ -105,9 +104,6 @@ export default function Navbar({ dark, setDark }) {
         </form>
 
         <div className="flex items-center gap-2 shrink-0">
-          <Link to="/reading-list" className="px-3 py-2 rounded-full text-sm font-medium text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-zinc-800 flex items-center gap-1">
-            <BookMarked className="w-4 h-4" /> {t.readingListNav}
-          </Link>
           <Link to="/favorites" className="relative px-3 py-2 rounded-full text-sm font-medium text-stone-600 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-zinc-800 flex items-center gap-1">
             <Heart className="w-4 h-4" /> {t.favoritesNav}
             {favorites.length > 0 && (

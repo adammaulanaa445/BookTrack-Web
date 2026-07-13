@@ -5,7 +5,6 @@ import { getBookDetails, getRelatedBooks, coverUrl } from "../api/openLibrary";
 import { useFavoriteAction } from "../hooks/useFavoriteAction";
 import { useLanguage } from "../context/LanguageContext";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import StatusSelect from "../components/StatusSelect";
 import BookCard from "../components/BookCard";
 
 export default function BookDetails() {
@@ -50,7 +49,7 @@ export default function BookDetails() {
   const cover = detail.covers?.[0] ? coverUrl(detail.covers[0], "L") : null;
   const bookKey = detail.key;
   const fav = isFavorite(bookKey);
-  const bookForStatus = { key: bookKey, title: detail.title, cover_i: detail.covers?.[0] };
+  const bookForFavorite = { key: bookKey, title: detail.title, cover_i: detail.covers?.[0] };
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
@@ -83,7 +82,7 @@ export default function BookDetails() {
           </div>
 
           <button
-            onClick={() => handleToggleFavorite(bookForStatus)}
+            onClick={() => handleToggleFavorite(bookForFavorite)}
             className={`mt-4 w-full flex items-center justify-center gap-2 py-2.5 rounded-full text-sm font-medium ${
               fav
                 ? "border border-stone-300 dark:border-zinc-700 text-stone-900 dark:text-stone-100"
@@ -93,10 +92,6 @@ export default function BookDetails() {
             <Heart className={`w-4 h-4 ${fav ? "fill-current" : ""}`} />
             {fav ? t.removeFavorite : t.addFavorite}
           </button>
-
-          <div className="mt-3">
-            <StatusSelect book={bookForStatus} className="w-full" />
-          </div>
         </div>
 
         <div>
